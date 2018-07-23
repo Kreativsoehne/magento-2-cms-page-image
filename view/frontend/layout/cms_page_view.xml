@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+	        <container name="page.view.container" htmlTag="div" htmlClass="category-view" after="-">
+		    	<block class="KuS\CmsPageImage\Block\PageImage" name="cms_page.image" template="cms/image.phtml" before="breadcrumbs" />
+	        </container>
+        </referenceContainer>
+        <move element="breadcrumbs" as="breadcrumbs" destination="page.view.container" />
+    </body>
+</page>

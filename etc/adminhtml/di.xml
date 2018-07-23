@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- create an ui component for uploading images, used on cms page edit form -->
+    <virtualType name="PageImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">cms/tmp</argument>
+            <argument name="basePath" xsi:type="string">cms</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="KuS\CmsPageImage\Controller\Adminhtml\PageImage\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">PageImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Cms\Controller\Adminhtml\Page\Save">
+        <plugin name="KusCmsPageImagePageSavePlugin" type="KuS\CmsPageImage\Plugin\Cms\Controller\Adminhtml\Page\Save" />
+    </type>
+    <type name="Magento\Cms\Model\Page\DataProvider">
+        <plugin name="KuSCmsPageImagePageDataproviderPlugin" type="KuS\CmsPageImage\Plugin\Cms\Model\Page\DataProvider" />
+    </type>
+</config>
